@@ -1,6 +1,6 @@
 # Greenlight API
 
-Greenlight api is an api, i implemented by following the book [Let's Go Further](https://lets-go-further.alexedwards.net/) by Alex Edwards
+Greenlight is an api, i implemented by following the book [Let's Go Further](https://lets-go-further.alexedwards.net/) by Alex Edwards
 
 If you like what you see please consider buying the book, it was my first hands on book and i absolutely loved it and i recommend it strongly.
 
@@ -15,13 +15,15 @@ If you are in Mac OS environment you can use brew to install the tools:
 
 ## Get Started
 
-1. Clone the repo:
+1. Make sure you have the requeriments working correctly
+
+2. Clone the repo
 
 ```bash
 git clone https://github.com/ricardonunosr/greenlight.git
 ```
 
-2. Create Database,User and install extension to database
+3. Create Database,User and install extension to database
 
 ```bash
 psql postgres
@@ -31,26 +33,29 @@ CREATE ROLE greenlight WITH LOGIN PASSWORD 'pa55word';
 CREATE EXTENSION IF NOT EXISTS citext;
 ```
 
-3. Add this to your .zshrc or bshrc and then source it:
+4. Add this to your .zshrc or bashrc and then source it
 
 ```bash
 export GREENLIGHT_DB_DSN='postgres://greenlight:pa55word@localhost/greenlight?sslmode=disable'
+```
+
+```bash
 source ~/.zshrc
 ```
 
-4. Executing the migrations
+5. Executing the migrations
 
 ```bash
 migrate -path=./migrations -database=$GREENLIGHT_DB_DSN up
 ```
 
-5. Run the api
+6. Run the api
 
 ```bash
 go run ./cmd/api
 ```
 
-6. Make a POST and GET requests to check if its working correctly
+7. Make a POST,GET and DELETE requests to check if its working correctly
 
 ```bash
 BODY='{"title":"Black Panther","year":2018,"runtime":"134 mins","genres":["sci-fi","action","adventure"]}'
