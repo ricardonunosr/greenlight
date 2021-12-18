@@ -12,6 +12,7 @@ If you are in Mac OS environment you can use brew to install the tools:
 - [migrate](https://github.com/golang-migrate/migrate), for database migrations (brew install golang-migrate)
 - [PostgreSQL](https://www.postgresql.org/), database (brew install postgresql)
 - [curl](https://curl.se/), just to make a http request as an example
+- [make](https://www.gnu.org/software/make/), run pre defined commands (brew install make)
 
 ## Get Started
 
@@ -33,29 +34,19 @@ CREATE ROLE greenlight WITH LOGIN PASSWORD 'pa55word';
 CREATE EXTENSION IF NOT EXISTS citext;
 ```
 
-4. Add this to your .zshrc or bashrc and then source it
+4. Executing the migrations
 
 ```bash
-export GREENLIGHT_DB_DSN='postgres://greenlight:pa55word@localhost/greenlight?sslmode=disable'
+make db/migrations/up
 ```
+
+5. Run the api
 
 ```bash
-source ~/.zshrc
+make run/api
 ```
 
-5. Executing the migrations
-
-```bash
-migrate -path=./migrations -database=$GREENLIGHT_DB_DSN up
-```
-
-6. Run the api
-
-```bash
-go run ./cmd/api
-```
-
-7. Make a POST,GET and DELETE requests to check if its working correctly
+6. Make a POST,GET and DELETE requests to check if its working correctly
 
 ```bash
 BODY='{"title":"Black Panther","year":2018,"runtime":"134 mins","genres":["sci-fi","action","adventure"]}'
